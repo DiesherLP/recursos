@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>CRÉDITOS - PARROQUIA TACTIC</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body class="bg-light">
+    <header class="bg-white shadow-sm mb-4">
+        <div class="container py-3">
+            <div class="d-flex justify-content-between align-items-center">
+                <h1 class="h3 m-0 text-primary">SISTEMA PARROQUIAL TACTIC</h1>
+                <nav class="d-flex gap-2">
+                    <a class="btn btn-primary" th:href="@{/recursos/nuevo}">+ NUEVO REGISTRO</a>
+                    <a class="btn btn-outline-dark" th:href="@{/recursos}">VOLVER AL LISTADO</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <h5 class="fw-bold mb-4 text-center">EQUIPO DE DESARROLLO DEL PROYECTO</h5>
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle text-center">
+                        <thead class="table-dark">
+                            <tr>
+                                <th style="width: 100px">NO.</th>
+                                <th>NOMBRE COMPLETO</th>
+                                <th>ROL EN EL PROYECTO</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>PACAY GARCÍA DIEGO ENRIQUE</td>
+                                <td>PROGRAMADOR</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>SIERRA CAHUEQUE EDIN WILFREDO ZACARÍAS</td>
+                                <td>INTERMEDIARIO</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>YAT CHOCOOJ ALICIA NAOMÍ LAETITIA</td>
+                                <td>DOCUMENTACIÓN</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="mt-4 text-center text-muted small">
+                    <p>PROYECTO DESARROLLADO PARA LA PARROQUIA SANTA MARÍA DE LA ASUNCIÓN, TACTIC, A.V.</p>
+                    <p>© 2026 - TODOS LOS DERECHOS RESERVADOS</p>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

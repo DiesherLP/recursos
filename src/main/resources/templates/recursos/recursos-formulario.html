@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ficha Parroquia Tactic</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container mt-4 mb-5">
+        <h2 class="text-center mb-4 text-primary fw-bold">FICHA INFORMATIVA - PARROQUIA TACTIC</h2>
+        <form th:action="@{/recursos/guardar}" th:object="${recurso}" method="post">
+            <input type="hidden" th:field="*{id}">
+
+            <div class="card shadow-sm mb-4 border-primary">
+                <div class="card-header bg-primary text-white fw-bold">1. INFORMACIÓN DEL CATEQUIZANDO</div>
+                <div class="card-body row g-3">
+                    <div class="col-md-12"><label class="form-label">Nombre Completo</label><input type="text" th:field="*{nombre}" class="form-control" required></div>
+                    <div class="col-md-4"><label class="form-label">Fecha Nacimiento</label><input type="date" th:field="*{fechaNacimiento}" class="form-control"></div>
+                    <div class="col-md-2"><label class="form-label">Edad</label><input type="number" th:field="*{edad}" class="form-control"></div>
+                    <div class="col-md-6"><label class="form-label">No. Teléfono</label><input type="text" th:field="*{telefono}" class="form-control"></div>
+                    <div class="col-md-12"><label class="form-label">Dirección</label><input type="text" th:field="*{direccion}" class="form-control"></div>
+                    <div class="col-md-4"><label class="form-label">Vive con</label><input type="text" th:field="*{viveCon}" class="form-control"></div>
+                    <div class="col-md-4"><label class="form-label">Hijos</label><input type="text" th:field="*{hijos}" class="form-control"></div>
+                    <div class="col-md-4"><label class="form-label">Ocupación</label><input type="text" th:field="*{ocupacion}" class="form-control"></div>
+                    <div class="col-md-12"><label class="form-label">Lugar de Trabajo / Estudio</label><input type="text" th:field="*{lugarTrabajo}" class="form-control"></div>
+                    <div class="col-12 mt-3 p-3 border rounded bg-white">
+                        <label class="fw-bold me-3">Sacramentos Recibidos:</label>
+                        <div class="form-check form-check-inline"><input class="form-check-input" type="checkbox" th:field="*{bautismo}" id="b"><label class="form-check-label" for="b">Bautismo</label></div>
+                        <div class="form-check form-check-inline"><input class="form-check-input" type="checkbox" th:field="*{eucaristia}" id="e"><label class="form-check-label" for="e">Eucaristía</label></div>
+                        <div class="form-check form-check-inline"><input class="form-check-input" type="checkbox" th:field="*{reconciliacion}" id="r"><label class="form-check-label" for="r">Reconciliación (confesión)</label></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card shadow-sm mb-4 border-info">
+                <div class="card-header bg-info text-white fw-bold">2. INFORMACIÓN DE LOS PADRES</div>
+                <div class="card-body row g-3">
+                    <div class="col-md-8"><label class="form-label">Nombre del Papá</label><input type="text" th:field="*{nombrePapa}" class="form-control"></div>
+                    <div class="col-md-4"><label class="form-label">Teléfono Papá</label><input type="text" th:field="*{telPapa}" class="form-control"></div>
+                    <div class="col-md-8"><label class="form-label">Nombre de la Mamá</label><input type="text" th:field="*{nombreMama}" class="form-control"></div>
+                    <div class="col-md-4"><label class="form-label">Teléfono Mamá</label><input type="text" th:field="*{telMama}" class="form-control"></div>
+                </div>
+            </div>
+
+            <div class="card shadow-sm mb-4 border-danger">
+                <div class="card-header bg-danger text-white fw-bold">3. CONTACTO DE EMERGENCIA</div>
+                <div class="card-body row g-3">
+                    <div class="col-md-5"><label class="form-label">Nombre</label><input type="text" th:field="*{nombreEmergencia}" class="form-control"></div>
+                    <div class="col-md-3"><label class="form-label">Teléfono</label><input type="text" th:field="*{telEmergencia}" class="form-control"></div>
+                    <div class="col-md-4">
+                        <label class="form-label">Relación</label>
+                        <select th:field="*{relacionEmergencia}" class="form-select">
+                            <option value="">Seleccione...</option>
+                            <option value="Padre">Padre</option>
+                            <option value="Madre">Madre</option>
+                            <option value="Abuelo(a)">Abuelo(a)</option>
+                            <option value="Tío(a)">Tío(a)</option>
+                            <option value="Tutor">Tutor</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card shadow-sm mb-4 border-dark">
+                <div class="card-header bg-dark text-white fw-bold">4. INFORMACIÓN DE CATEQUESIS</div>
+                <div class="card-body row g-3">
+                    <div class="col-md-6"><label class="form-label">Catequista</label><input type="text" th:field="*{catequista}" class="form-control"></div>
+                    <div class="col-md-2"><label class="form-label">Día</label><input type="text" th:field="*{diaCatequesis}" class="form-control"></div>
+                    <div class="col-md-2"><label class="form-label">Hora</label><input type="text" th:field="*{horaCatequesis}" class="form-control"></div>
+                    <div class="col-md-2"><label class="form-label">Inicio Catequesis</label><input type="date" th:field="*{inicioCatequesis}" class="form-control"></div>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-success btn-lg px-5 shadow">GUARDAR FICHA</button>
+                <a th:href="@{/recursos}" class="btn btn-secondary btn-lg px-4 ms-2">CANCELAR</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
