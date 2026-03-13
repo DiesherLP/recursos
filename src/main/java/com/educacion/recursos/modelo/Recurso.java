@@ -25,7 +25,7 @@ public class Recurso {
     private boolean bautismo;
     private boolean eucaristia;
     private boolean reconciliacion;
-
+ 
     // 2. PADRES
     private String nombrePapa;
     private String telPapa;
