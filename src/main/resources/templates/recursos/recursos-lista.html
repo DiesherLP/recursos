@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Listado Parroquia - Tactic</title>
@@ -15,10 +16,15 @@
             width: 250px !important;
             margin-bottom: 10px;
         }
+        .user-welcome { font-size: 0.9rem; color: #6c757d; }
     </style>
 </head>
 <body class="bg-light">
     <div class="container mt-4">
+        <div class="d-flex justify-content-end mb-2 user-welcome" sec:authorize="isAuthenticated()">
+            <span>Bienvenido, <strong class="text-primary" sec:authentication="name">Usuario</strong></span>
+        </div>
+
         <div class="card shadow mb-4">
             <div class="card-header bg-white border-0">
                 <div class="d-flex justify-content-between align-items-center py-2">
@@ -29,9 +35,17 @@
                     </div>
                     <img th:src="@{/images/espiritu.png}" alt="Espíritu" width="70" height="70">
                 </div>
-                <div class="bg-primary p-2 d-flex justify-content-end gap-2 mt-2 rounded shadow-sm">
-                    <a th:href="@{/recursos/nuevo}" class="btn btn-light btn-sm fw-bold">+ NUEVA FICHA</a>
+                
+                <div class="bg-primary p-2 d-flex justify-content-end align-items-center gap-2 mt-2 rounded shadow-sm">
+                    <a sec:authorize="hasRole('ADMIN')" th:href="@{/recursos/nuevo}" class="btn btn-light btn-sm fw-bold">+ NUEVA FICHA</a>
+                    
                     <a th:href="@{/recursos/creditos}" class="btn btn-light btn-sm fw-bold">CRÉDITOS</a>
+                    
+                    <form th:action="@{/logout}" method="post" class="m-0">
+                        <button type="submit" class="btn btn-danger btn-sm fw-bold">
+                            CERRAR SESIÓN
+                        </button>
+                    </form>
                 </div>
             </div>
 
@@ -57,9 +71,11 @@
                                 <td th:text="${item.catequista}"></td>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <a th:href="@{/recursos/editar/{id}(id=${item.id})}" class="btn btn-sm btn-info text-white">Editar</a>
+                                        <a sec:authorize="hasRole('ADMIN')" th:href="@{/recursos/editar/{id}(id=${item.id})}" class="btn btn-sm btn-info text-white">Editar</a>
+                                        
                                         <a th:href="@{/recursos/imprimir/{id}(id=${item.id})}" class="btn btn-sm btn-secondary">Imprimir</a>
-                                        <a th:href="@{/recursos/eliminar/{id}(id=${item.id})}" class="btn btn-sm btn-danger" onclick="return confirm('¿Eliminar?')">Borrar</a>
+                                        
+                                        <a sec:authorize="hasRole('ADMIN')" th:href="@{/recursos/eliminar/{id}(id=${item.id})}" class="btn btn-sm btn-danger" onclick="return confirm('¿Eliminar?')">Borrar</a>
                                     </div>
                                 </td>
                             </tr>
@@ -75,9 +91,8 @@
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
 
     <script>
-        // Versión ultra simple sin corchetes dobles para que Thymeleaf no falle
         $(document).ready(function() {
-            var table = $('#tablaFichas').DataTable({
+            $('#tablaFichas').DataTable({
                 pageLength: 10,
                 language: {
                     search: "BUSCAR:",

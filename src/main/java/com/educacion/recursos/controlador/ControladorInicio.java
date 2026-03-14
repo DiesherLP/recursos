@@ -10,4 +10,8 @@ public class ControladorInicio {
     public String home() {
         return "redirect:/recursos";
     }
+@GetMapping("/login")
+public String login() {
+    return "login"; // Esto busca el archivo login.html en templates
+}
 }
